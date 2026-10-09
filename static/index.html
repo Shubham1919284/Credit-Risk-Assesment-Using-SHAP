@@ -1,0 +1,745 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+
+    <title>
+        CreditGuard | Credit Risk Assessment
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="/static/style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<header class="topbar">
+
+    <div class="brand">
+
+        <div class="logo">
+            CG
+        </div>
+
+        <div>
+
+            <b>
+                CreditGuard
+            </b>
+
+            <small>
+                Credit Risk Assessment
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <span class="badge">
+        ML Powered
+    </span>
+
+</header>
+
+
+
+<main class="container">
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero">
+
+        <div>
+
+            <span class="eyebrow">
+                CREDIT RISK PREDICTION
+            </span>
+
+
+            <h1>
+
+                Check loan repayment risk
+
+                <br>
+
+                <span>
+                    in a few seconds.
+                </span>
+
+            </h1>
+
+
+            <p>
+
+                Enter some basic information about the person
+                and the loan to get a machine-learning-based
+                risk assessment.
+
+            </p>
+
+        </div>
+
+
+        <div class="hero-card">
+
+            <strong>
+                ✓ Quick assessment
+            </strong>
+
+            <small>
+                Risk probability + prediction
+            </small>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         FORM
+    ========================== -->
+
+    <form id="loanForm">
+
+
+        <!-- =========================
+             APPLICANT INFORMATION
+        ========================== -->
+
+        <section class="card">
+
+
+            <div class="heading">
+
+                <i>
+                    01
+                </i>
+
+
+                <div>
+
+                    <h2>
+                        Applicant Information
+                    </h2>
+
+                    <p>
+                        Basic information about the person applying
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="grid">
+
+
+                <!-- AGE -->
+
+                <label>
+
+                    <span class="label-title">
+
+                        Age
+
+                        <button
+                            type="button"
+                            class="info-btn"
+                            data-help="How old is the person applying for the loan? For example, if they are 28 years old, enter 28."
+                        >
+                            ?
+                        </button>
+
+                    </span>
+
+
+                    <input
+                        type="number"
+                        name="person_age"
+                        min="18"
+                        max="100"
+                        required
+                        placeholder="e.g. 28"
+                    >
+
+                </label>
+
+
+
+                <!-- INCOME -->
+
+                <label>
+
+                    <span class="label-title">
+
+                        Yearly Income
+
+                        <button
+                            type="button"
+                            class="info-btn"
+                            data-help="How much money does the person earn in one year? Enter their yearly income, not their monthly salary. For example, if they earn ₹50,000 per month, their yearly income is about ₹6,00,000."
+                        >
+                            ?
+                        </button>
+
+                    </span>
+
+
+                    <input
+                        type="number"
+                        name="person_income"
+                        min="1"
+                        step=".01"
+                        required
+                        placeholder="e.g. 600000"
+                    >
+
+                </label>
+
+
+
+                <!-- HOME -->
+
+                <label>
+
+                    <span class="label-title">
+
+                        Where Do You Live?
+
+                        <button
+                            type="button"
+                            class="info-btn"
+                            data-help="Choose the person's current housing situation. Select RENT if they pay rent, MORTGAGE if they are paying a home loan, OWN if they own their home, or OTHER if none of these apply."
+                        >
+                            ?
+                        </button>
+
+                    </span>
+
+
+                    <select
+                        name="person_home_ownership"
+                        required
+                    >
+
+                        <option value="">
+                            Select
+                        </option>
+
+                        <option value="RENT">
+                            Rent
+                        </option>
+
+                        <option value="MORTGAGE">
+                            Paying a Home Loan
+                        </option>
+
+                        <option value="OWN">
+                            Own Home
+                        </option>
+
+                        <option value="OTHER">
+                            Other
+                        </option>
+
+                    </select>
+
+                </label>
+
+
+
+                <!-- EMPLOYMENT -->
+
+                <label>
+
+                    <span class="label-title">
+
+                        How Long Have You Been Working?
+
+                        <button
+                            type="button"
+                            class="info-btn"
+                            data-help="How long has the person been working? For example, if they have been working for 3 years, enter 3. If they have worked for 6 months, enter 0.5."
+                        >
+                            ?
+                        </button>
+
+                    </span>
+
+
+                    <input
+                        type="number"
+                        name="person_emp_length"
+                        min="0"
+                        max="60"
+                        step=".1"
+                        required
+                        placeholder="e.g. 3"
+                    >
+
+                </label>
+
+
+            </div>
+
+        </section>
+
+
+
+
+        <!-- =========================
+             LOAN INFORMATION
+        ========================== -->
+
+        <section class="card">
+
+
+            <div class="heading">
+
+                <i>
+                    02
+                </i>
+
+
+                <div>
+
+                    <h2>
+                        Loan Information
+                    </h2>
+
+                    <p>
+                        Information about the money being borrowed
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="grid">
+
+
+                <!-- PURPOSE -->
+
+                <label>
+
+                    <span class="label-title">
+
+                        Why Do You Need the Loan?
+
+                        <button
+                            type="button"
+                            class="info-btn"
+                            data-help="Choose the main reason for borrowing the money. For example, the loan could be for personal needs, education, medical expenses, starting a business, improving a home, or paying off other loans."
+                        >
+                            ?
+                        </button>
+
+                    </span>
+
+
+                    <select
+                        name="loan_intent"
+                        required
+                    >
+
+                        <option value="">
+                            Select purpose
+                        </option>
+
+                        <option value="PERSONAL">
+                            Personal needs
+                        </option>
+
+                        <option value="EDUCATION">
+                            Education
+                        </option>
+
+                        <option value="MEDICAL">
+                            Medical expenses
+                        </option>
+
+                        <option value="VENTURE">
+                            Business
+                        </option>
+
+                        <option value="HOMEIMPROVEMENT">
+                            Home improvement
+                        </option>
+
+                        <option value="DEBTCONSOLIDATION">
+                            Paying off other loans
+                        </option>
+
+                    </select>
+
+                </label>
+
+
+
+                <!-- LOAN GRADE -->
+
+                <label>
+
+                    <span class="label-title">
+
+                        Loan Grade
+
+                        <button
+                            type="button"
+                            class="info-btn"
+                            data-help="This is a letter grade given to the loan based on credit and loan information. A generally represents a stronger grade, while G generally represents a weaker grade. This project uses the grade as information for its prediction model; it does not calculate the grade itself."
+                        >
+                            ?
+                        </button>
+
+                    </span>
+
+
+                    <select
+                        name="loan_grade"
+                        required
+                    >
+
+                        <option value="">
+                            Select grade
+                        </option>
+
+                        <option value="A">
+                            A — Stronger
+                        </option>
+
+                        <option value="B">
+                            B
+                        </option>
+
+                        <option value="C">
+                            C
+                        </option>
+
+                        <option value="D">
+                            D
+                        </option>
+
+                        <option value="E">
+                            E
+                        </option>
+
+                        <option value="F">
+                            F
+                        </option>
+
+                        <option value="G">
+                            G — Weaker
+                        </option>
+
+                    </select>
+
+                </label>
+
+
+
+                <!-- LOAN AMOUNT -->
+
+                <label>
+
+                    <span class="label-title">
+
+                        How Much Do You Want to Borrow?
+
+                        <button
+                            type="button"
+                            class="info-btn"
+                            data-help="Enter the total amount of money the person wants to borrow. For example, if they want to borrow ₹2,00,000, enter 200000."
+                        >
+                            ?
+                        </button>
+
+                    </span>
+
+
+                    <input
+                        type="number"
+                        name="loan_amnt"
+                        id="loanAmount"
+                        min="1"
+                        step=".01"
+                        required
+                        placeholder="e.g. 200000"
+                    >
+
+                </label>
+
+
+
+                <!-- INTEREST -->
+
+                <label>
+
+                    <span class="label-title">
+
+                        Interest Rate (%)
+
+                        <button
+                            type="button"
+                            class="info-btn"
+                            data-help="This is the extra percentage charged each year for borrowing the money. For example, 11.5 means the loan has an annual interest rate of 11.5%."
+                        >
+                            ?
+                        </button>
+
+                    </span>
+
+
+                    <input
+                        type="number"
+                        name="loan_int_rate"
+                        min="0"
+                        max="100"
+                        step=".01"
+                        required
+                        placeholder="e.g. 11.5"
+                    >
+
+                </label>
+
+
+
+                <!-- RATIO -->
+
+                <label class="derived-field">
+
+                    <span class="label-title">
+
+                        Loan Compared to Yearly Income
+
+                        <button
+                            type="button"
+                            class="info-btn"
+                            data-help="This is calculated automatically. It compares the amount the person wants to borrow with their yearly income. For example, ₹1,00,000 loan ÷ ₹5,00,000 yearly income = 0.20. That means the loan amount is 20% of their yearly income. You do not need to enter this value."
+                        >
+                            ?
+                        </button>
+
+                    </span>
+
+
+                    <div class="ratio-box">
+
+                        <span id="ratioDisplay">
+                            —
+                        </span>
+
+                        <small id="ratioPercent">
+                            Enter income and loan amount
+                        </small>
+
+                    </div>
+
+
+                    <input
+                        type="hidden"
+                        name="loan_percent_income"
+                        id="loanPercentIncome"
+                    >
+
+                </label>
+
+
+            </div>
+
+        </section>
+
+
+
+
+        <!-- =========================
+             CREDIT HISTORY
+        ========================== -->
+
+        <section class="card">
+
+
+            <div class="heading">
+
+                <i>
+                    03
+                </i>
+
+
+                <div>
+
+                    <h2>
+                        Credit History
+                    </h2>
+
+                    <p>
+                        Information about previous borrowing and repayment
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="grid">
+
+
+                <!-- PREVIOUS DEFAULT -->
+
+                <label>
+
+                    <span class="label-title">
+
+                        Previous Loan Repayment Problem
+
+                        <button
+                            type="button"
+                            class="info-btn"
+                            data-help="Has this person ever failed to repay a previous loan as agreed? Choose Yes if they had a previous loan that was not properly repaid or was seriously overdue. Choose No if there is no previous repayment problem recorded."
+                        >
+                            ?
+                        </button>
+
+                    </span>
+
+
+                    <select
+                        name="cb_person_default_on_file"
+                        required
+                    >
+
+                        <option value="">
+                            Select
+                        </option>
+
+                        <option value="N">
+                            No
+                        </option>
+
+                        <option value="Y">
+                            Yes
+                        </option>
+
+                    </select>
+
+                </label>
+
+
+
+                <!-- CREDIT HISTORY -->
+
+                <label>
+
+                    <span class="label-title">
+
+                        How Long Have You Used Credit?
+
+                        <button
+                            type="button"
+                            class="info-btn"
+                            data-help="For how many years has the person had loans, credit cards, or other credit accounts? For example, someone who has been using credit for 5 years should enter 5."
+                        >
+                            ?
+                        </button>
+
+                    </span>
+
+
+                    <input
+                        type="number"
+                        name="cb_person_cred_hist_length"
+                        min="0"
+                        step=".1"
+                        required
+                        placeholder="e.g. 5"
+                    >
+
+                </label>
+
+
+            </div>
+
+        </section>
+
+
+
+
+        <!-- SUBMIT -->
+
+        <button
+            class="submit"
+            type="submit"
+        >
+
+            <span id="btn">
+                Check Loan Risk
+            </span>
+
+
+            <span
+                id="spin"
+                class="spin hidden"
+            ></span>
+
+        </button>
+
+
+    </form>
+
+
+
+    <!-- RESULT -->
+
+    <section
+        id="result"
+        class="result hidden"
+    ></section>
+
+
+</main>
+
+
+
+
+<footer>
+
+    CreditGuard • Machine Learning Credit Risk Assessment
+
+    <br>
+
+    <small>
+        For demonstration purposes only.
+        Not a sole basis for lending decisions.
+    </small>
+
+</footer>
+
+
+
+<script src="/static/script.js"></script>
+
+
+</body>
+
+</html>
